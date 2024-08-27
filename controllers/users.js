@@ -47,7 +47,7 @@ const login = async (req, res, next) => {
         return res.status(HttpCode.UNAUTHORIZED).json({
             status: 'error',
             code: HttpCode.UNAUTHORIZED,
-            message: 'Invalid credentials',
+            message: 'Invalid credentials!',
         });
     }
     const id = user._id;
