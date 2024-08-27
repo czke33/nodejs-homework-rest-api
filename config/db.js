@@ -13,6 +13,7 @@ const db = mongoose.connect(uri, {
     useUnifiedTopology: true,
 });
 mongoose.set('strictQuery', true);
+
 // connected
 mongoose.connection.on('connected', () => {
     console.log('Mongoose connection successful');
