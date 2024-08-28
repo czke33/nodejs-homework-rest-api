@@ -1,12 +1,12 @@
-const ValidInfoContact = {
-  MIN_AGE: 1,
-  MAX_AGE: 105,
+const ValidateLengthContactName = {
+  MIN_LENGTH_NAME: 3,
+  MAX_LENGTH_NAME: 30,
 };
 
-const Gender = {
-  MALE: 'male',
-  FEMALE: 'female',
-  NONE: 'none',
+const Subscription = {
+  STARTER: "starter",
+  PRO: "pro",
+  BUSINESS: "business",
 };
 
 const HttpCode = {
@@ -29,8 +29,8 @@ const Limit = {
 };
 
 module.exports = {
-  ValidInfoContact,
-  Gender,
+  ValidateLengthContactName,
+  Subscription,
   HttpCode,
   Limit
 };
