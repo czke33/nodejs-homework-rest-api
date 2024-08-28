@@ -23,8 +23,8 @@ class UploadFileAvatar {
                 transformation: { width: 250, height: 250, crop: 'pad' },
             });
         return {
-            avatarUrl: avatarUrl,
-            returnIdUserCloud: returnIdUserCloud.replace(`${this.destination}/`, ''),
+            avatarUrl,
+            returnIdUserCloud,
         };
     }
 }

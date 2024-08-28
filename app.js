@@ -7,6 +7,7 @@ require('dotenv').config();
 const  UPLOAD_DIR = process.env. UPLOAD_DIR;
 const contactsRouter = require('./routes/contacts/contacts');
 const usersRouter = require('./routes/users/users');
+const {Limit}=require('./config/constant')
 
 const app = express();
 
@@ -14,9 +15,9 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(express.static( UPLOAD_DIR));
 app.use(helmet());
-app.get('env') !== 'test' && app.use(logger(formatsLogger));
+app.use(logger(formatsLogger));
 app.use(cors());
-app.use(express.json({ limit: 10000 }));
+app.use(express.json({ limit: Limit.JSON }));
 app.use(boolParser());
 
 app.use((req, res, next) => {
@@ -32,12 +33,13 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err.name === 'ValidationError') {
+  if (err.name === "ValidationError") {
     return res
         .status(400)
-        .json({ status: 'error', code: 400, message: err.message });
+        .json({ status: "error", code: 400, message: err.message });
   }
-  res.status(500).json({ status: 'fail', code: 500, message: err.message });
+  const statusCode = err.status || 500
+  res.status(statusCode).json({ status: statusCode === 500 ? 'fail' : 'error', code: statusCode, message: err.message });
 });
 
 module.exports = app;
